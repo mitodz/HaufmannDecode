@@ -1,6 +1,4 @@
 import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public class Main {
 
@@ -19,28 +17,36 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner("aaaaabbb");//aaaaaaaaaaaaaaabbbbbbbccccccddddddeeeee
-        String s = scanner.nextLine();
-        StringBuilder sb = new StringBuilder();
-        long n = s.chars().distinct().count(); // количество уникальных букв
-        long m = s.chars().count(); // количество повторяющихся букв
-        if (n == 1) {
-            System.out.print("1 "+m+"\n" + s.charAt(0) + ": 0\n");
-            for (int i = 0; i < m; i++) {
-                System.out.print(0);
-            }
-        } else {
-            s.chars().mapToObj(x -> (char) x)
-                    .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
-                    .entrySet()
-                    .stream()
-                    .sorted(Map.Entry.<Character, Long>comparingByValue().thenComparing(Map.Entry::getKey))
-                    .forEach(x -> {
-                        sb.append(x.getKey());
-                        q.add(new Node(Character.toString(x.getKey()), x.getValue()));
-                    });
-            String st = sb.reverse().toString();//финальный отсортированный список букв
+        Scanner scanner = new Scanner("4 14\n" +
+                "a: 0\n" +
+                "b: 10\n" +
+                "c: 110\n" +
+                "d: 111\n" +
+                "01001100100111").useDelimiter(":\\s"); //aaaaaaaaaaaaaaabbbbbbbccccccddddddeeeee
 
+        long n = scanner.nextInt(); // количество уникальных букв
+        long m = scanner.nextInt(); // количество символов результирующей строки
+        Map<String,Integer> map = new LinkedHashMap<>();
+        for (int i = 0; i < n; i++) {
+            map.put(scanner.next(),scanner.nextInt());
         }
+        map.forEach((x,y)-> System.out.println(x + ": " + y));
+
+
+
+
+
+
+
+
+
+//        if (n == 1) {
+//            System.out.print("1 "+m+"\n" + s.charAt(0) + ": 0\n");
+//            for (int i = 0; i < m; i++) {
+//                System.out.print(0);
+//            }
+//        } else {
+//
+//        }
     }
 }
