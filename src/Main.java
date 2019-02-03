@@ -18,9 +18,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Comparator<Node> comparatorString = Comparator.comparing(Node::getLetter, Comparator.comparing(x -> x.charAt(0), Character::compareTo)).reversed();//
-        Comparator<Node> comparator = Comparator.comparing(Node::getCount, Long::compareTo).thenComparing(comparatorString);
-        Queue<Node> q = new PriorityQueue<>(comparator);
 
         Scanner scanner = new Scanner("aaaaabbb");//aaaaaaaaaaaaaaabbbbbbbccccccddddddeeeee
         String s = scanner.nextLine();
@@ -44,18 +41,6 @@ public class Main {
                     });
             String st = sb.reverse().toString();//финальный отсортированный список букв
 
-            Node i;
-            Node j;
-            for (long k = n + 1; k <= 2 * n - 1; k++) {
-                i = q.poll();
-                j = q.poll();
-                Node p = new Node(j.getLetter() + i.getLetter(), i.getCount() + j.getCount());
-                p.setLeft(i);
-                p.setRight(j);
-                q.offer(p);
-            }
-            Node tree = q.poll();
-            printTree(s, st, tree);
         }
     }
 }
