@@ -22,7 +22,7 @@ public class Main {
                 "b: 10\n" +
                 "c: 110\n" +
                 "d: 111\n" +
-                "01001100100111").useDelimiter(":\\s"); //aaaaaaaaaaaaaaabbbbbbbccccccddddddeeeee
+                "01001100100111").useDelimiter("\\W+"); //aaaaaaaaaaaaaaabbbbbbbccccccddddddeeeee
 
         long n = scanner.nextInt(); // количество уникальных букв
         long m = scanner.nextInt(); // количество символов результирующей строки
@@ -30,14 +30,8 @@ public class Main {
         for (int i = 0; i < n; i++) {
             map.put(scanner.next(),scanner.nextInt());
         }
-        map.forEach((x,y)-> System.out.println(x + ": " + y));
-
-
-
-
-
-
-
+        String s = Integer.toString(scanner.nextInt()); //закодированная строка
+//        map.forEach((x,y)-> System.out.println(x + ": " + y));
 
 
 //        if (n == 1) {
