@@ -15,19 +15,20 @@ public class Main {
         }
     }
 
-    static void createTreeFromCode (Map <String, Integer> map, StringBuilder lastCodeMap) {
+    static Node createTreeFromCode (Map <String, Integer> map, StringBuilder lastCodeMap) {
         Node left = new Node(0);
         Node right = new Node(0);
+        Node p = new Node(0);
         for (int i = 0; i < lastCodeMap.length(); i++) {
             if (lastCodeMap.charAt(i)=='1') {
                 left.setCount(1);
             } else {
                 right.setCount(0);
             }
-            Node p = new Node(0);
             p.setLeft(left);
             p.setRight(right);
         }
+        return p;
     }
 
     public static void main(String[] args) {
@@ -43,11 +44,13 @@ public class Main {
         long m = scanner.nextInt(); // количество символов результирующей строки
         Map<String, Integer> map = new LinkedHashMap<>();
         int lastCodeInt=0;
+        StringBuilder lastCodeOfMap = new StringBuilder(); //последний код в мапе
         for (int i = 0; i < n; i++) {
             map.put(scanner.next(), lastCodeInt = scanner.nextInt());
         }
-        StringBuilder lastCodeOfMap = new StringBuilder(lastCodeInt); //последний код в мапе
-        StringBuilder sbCode = new StringBuilder(scanner.nextInt()); //закодированная строка
+        lastCodeOfMap.append(lastCodeInt);
+        System.out.println(lastCodeOfMap.toString());
+        StringBuilder sbCode = new StringBuilder(scanner.nextLine()); //закодированная строка
         createTreeFromCode(map, lastCodeOfMap);
 
 //        map.forEach((x,y)-> System.out.println(x + ": " + y));
