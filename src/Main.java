@@ -15,6 +15,21 @@ public class Main {
         }
     }
 
+    static void createTreeFromCode (Map <String, Integer> map, StringBuilder lastCodeMap) {
+        Node left = new Node(0);
+        Node right = new Node(0);
+        for (int i = 0; i < lastCodeMap.length(); i++) {
+            if (lastCodeMap.charAt(i)=='1') {
+                left.setCount(1);
+            } else {
+                right.setCount(0);
+            }
+            Node p = new Node(0);
+            p.setLeft(left);
+            p.setRight(right);
+        }
+    }
+
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner("4 14\n" +
@@ -22,15 +37,19 @@ public class Main {
                 "b: 10\n" +
                 "c: 110\n" +
                 "d: 111\n" +
-                "01001100100111").useDelimiter("\\W+"); //aaaaaaaaaaaaaaabbbbbbbccccccddddddeeeee
+                "01001100100111").useDelimiter("\\W+");
 
         long n = scanner.nextInt(); // количество уникальных букв
         long m = scanner.nextInt(); // количество символов результирующей строки
-        Map<String,Integer> map = new LinkedHashMap<>();
+        Map<String, Integer> map = new LinkedHashMap<>();
+        int lastCodeInt=0;
         for (int i = 0; i < n; i++) {
-            map.put(scanner.next(),scanner.nextInt());
+            map.put(scanner.next(), lastCodeInt = scanner.nextInt());
         }
-        String s = Integer.toString(scanner.nextInt()); //закодированная строка
+        StringBuilder lastCodeOfMap = new StringBuilder(lastCodeInt); //последний код в мапе
+        StringBuilder sbCode = new StringBuilder(scanner.nextInt()); //закодированная строка
+        createTreeFromCode(map, lastCodeOfMap);
+
 //        map.forEach((x,y)-> System.out.println(x + ": " + y));
 
 

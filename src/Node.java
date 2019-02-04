@@ -11,6 +11,10 @@ class Node {
         this.letter = letter;
     }
 
+    Node(long count) {
+        this.count = count;
+    }
+
     long getBits() {
         if (left!=null) {
             bits+=left.getCount();
@@ -34,6 +38,10 @@ class Node {
             right.writeCode(letter);
         }
         return code.toString();
+    }
+
+    void setCount (long count) {
+        this.count=count;
     }
 
     void clearCode () {
