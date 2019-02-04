@@ -1,33 +1,7 @@
 import java.util.*;
 
 public class Main {
-
-    static void printTree(String s, String st, Node tree) {
-        int n = st.length(); //количество уникальных букв
-        System.out.println(n + " " + tree.getBits()); //реализация вывода уникальных букв и количества бит
-        for (int i = 0; i < n; i++) { //реализация кода на каждую букву
-            System.out.println(st.charAt(i) + ": " + tree.writeCode(Character.toString(st.charAt(i))));
-            tree.clearCode();
-        }
-        for (int j = 0; j < s.length(); j++) {//реализация кода на весь текст
-            System.out.print(tree.writeCode(Character.toString(s.charAt(j))));
-            tree.clearCode();
-        }
-    }
-
-    static Node createTreeFromCode (Map <String, Integer> map, StringBuilder lastCodeMap) {
-        Node p = new Node(0);
-        for (int i = 0; i < lastCodeMap.length(); i++) {
-            if (lastCodeMap.charAt(i)=='1') {
-                Node left = new Node(1);
-                p.setLeft(left);
-            } else {
-                Node right = new Node(0);
-                p.setRight(right);
-            }
-        }
-        return p;
-    }
+    static String code;
 
     public static void main(String[] args) {
 
@@ -41,26 +15,17 @@ public class Main {
         long n = scanner.nextInt(); // количество уникальных букв
         long m = scanner.nextInt(); // количество символов результирующей строки
         Map<String, Integer> map = new LinkedHashMap<>();
-        int lastCodeInt=0;
-        StringBuilder lastCodeOfMap = new StringBuilder(); //последний код в мапе
         for (int i = 0; i < n; i++) {
-            map.put(scanner.next(), lastCodeInt = scanner.nextInt());
+            map.put(scanner.next(), scanner.nextInt());
         }
-        lastCodeOfMap.append(lastCodeInt);
-        System.out.println(lastCodeOfMap.toString());
-        StringBuilder sbCode = new StringBuilder(scanner.nextLine()); //закодированная строка
-        createTreeFromCode(map, lastCodeOfMap);
-
-//        map.forEach((x,y)-> System.out.println(x + ": " + y));
-
-
-//        if (n == 1) {
-//            System.out.print("1 "+m+"\n" + s.charAt(0) + ": 0\n");
-//            for (int i = 0; i < m; i++) {
-//                System.out.print(0);
-//            }
-//        } else {
-//
-//        }
+        code = scanner.next(); //закодированная строка
+        for (int i = 0; i < code.length(); i++) {
+            map.forEach((x,y)-> {
+                if (code.startsWith(y.toString())) {
+                    System.out.print(x);
+                    code=code.subSequence(1,code.length()-1).toString();
+                }
+            });
+        }
     }
 }
