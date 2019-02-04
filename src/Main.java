@@ -16,17 +16,15 @@ public class Main {
     }
 
     static Node createTreeFromCode (Map <String, Integer> map, StringBuilder lastCodeMap) {
-        Node left = new Node(0);
-        Node right = new Node(0);
         Node p = new Node(0);
         for (int i = 0; i < lastCodeMap.length(); i++) {
             if (lastCodeMap.charAt(i)=='1') {
-                left.setCount(1);
+                Node left = new Node(1);
+                p.setLeft(left);
             } else {
-                right.setCount(0);
+                Node right = new Node(0);
+                p.setRight(right);
             }
-            p.setLeft(left);
-            p.setRight(right);
         }
         return p;
     }
