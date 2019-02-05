@@ -5,10 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner("2 15\n" +
-                "z: 0\n" +
-                "y: 10\n" +
-                "000001010101010").useDelimiter("\\W+");
+        Scanner scanner = new Scanner(System.in).useDelimiter("\\W+");
         long n = scanner.nextInt(); // количество уникальных букв
         long m = scanner.nextInt(); // количество символов результирующей строки
         if (n == 1) {
