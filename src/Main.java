@@ -14,16 +14,16 @@ public class Main {
                 System.out.print(s);
             }
         } else {
-            Map<String, Integer> map = new LinkedHashMap<>();
+            Map<String, String> map = new LinkedHashMap<>();
             for (int i = 0; i < n; i++) {
-                map.put(scanner.next(), scanner.nextInt());
+                map.put(scanner.next(), scanner.next());
             }
             code = scanner.next(); //закодированная строка
             for (int i = 0; i <= m; i++) {
                 map.forEach((x, y) -> {
-                    if (code.startsWith(y.toString())) {
+                    if (code.startsWith(y)) {
                         System.out.print(x);
-                        code = code.subSequence(y.toString().length(), code.length()).toString();
+                        code = code.subSequence(y.length(), code.length()).toString();
                     }
                 });
             }
